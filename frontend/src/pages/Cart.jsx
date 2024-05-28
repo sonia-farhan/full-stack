@@ -45,11 +45,11 @@ const Cart = () => {
           <p className="fw-bold fs-2">Cart</p>
 
           <p className="mb-0 fw-bold " style={{ display: "inline-block" }}>
-            Hello <span className="fs-4 text-orange">{user ? user.name : "User "}</span> You have{" "}
+            Hello <span className="fs-4 text-orange">{user ? user.name : "User "}</span> 
           </p>
           {cart.length < 1 ? (
             <div>
-              <p className="fs-6 mb-0 text-black" style={{ display: "inline-block" }}>
+              <p className="fs-6 mb-0 text-black pe-2" style={{ display: "inline-block" }}>
                 Your Cart Empty
               </p>
               <Link className="text-black" to="/buy" style={{textDecoration:"none"}}>Continue Shopping</Link>
