@@ -1,12 +1,12 @@
 import React from "react";
 import { useCart } from "../context/CartContext";
 import { Link } from "react-router-dom";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import SEO from "../component/SEO";
 
 const Cart = () => {
   const [cart, setCart] = useCart();
-  // const { user } = useSelector((state) => state.auth);
+   const { user } = useSelector((state) => state.auth);
 
   const deleteCardItem = (pid) => {
     try {
@@ -45,7 +45,7 @@ const Cart = () => {
           <p className="fw-bold fs-2">Cart</p>
 
           <p className="mb-0 fw-bold " style={{ display: "inline-block" }}>
-            Hello <span className="fs-4 text-orange">User</span> You have{" "}
+            Hello <span className="fs-4 text-orange">{user ? user.name : "User "}</span> You have{" "}
           </p>
           {cart.length < 1 ? (
             <div>

@@ -24,6 +24,8 @@ const __dirname=path.dirname(__filename);
 
 //middleware
 app.use(express.json());
+
+
 app.use(express.static("public"))
 
 app.use(morgan('dev'));

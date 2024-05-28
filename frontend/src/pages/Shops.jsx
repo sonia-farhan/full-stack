@@ -111,7 +111,7 @@ const Shops = () => {
   useEffect(() => {
     if (page === 1) return;
     loadMore();
-  }, [page, loadMore]);
+  }, [page]);
   return (
     <>
       <SEO
