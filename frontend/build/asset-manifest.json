@@ -1,0 +1,42 @@
+{
+  "files": {
+    "main.css": "/static/css/main.228da8cf.css",
+    "main.js": "/static/js/main.b7296e3a.js",
+    "static/js/453.d855a71b.chunk.js": "/static/js/453.d855a71b.chunk.js",
+    "static/media/abu.JPG": "/static/media/abu.49d30829bb4a04dec5e2.JPG",
+    "static/media/akmal2.JPG": "/static/media/akmal2.13f111a03551283f5623.JPG",
+    "static/media/rack.jpg": "/static/media/rack.bcb511991a4f5d9a9b1a.jpg",
+    "static/media/burder.jpg": "/static/media/burder.7a6730f35b0cac0165c0.jpg",
+    "static/media/chicken.jpg": "/static/media/chicken.85abc9b9387913784ef2.jpg",
+    "static/media/icecream.jpg": "/static/media/icecream.e0e62afc0bad8309cf39.jpg",
+    "static/media/cake1.jpg": "/static/media/cake1.046fd721f7fc9d14bb94.jpg",
+    "static/media/ali4.png": "/static/media/ali4.4ad3105195a6b691d785.png",
+    "static/media/cakewhite.jpg": "/static/media/cakewhite.d16568df8a9ed763aa03.jpg",
+    "static/media/pizza.jpg": "/static/media/pizza.f480b01730e03bf6d075.jpg",
+    "static/media/coldDrinks.jpeg": "/static/media/coldDrinks.498f90b00c2b86e4e5f2.jpeg",
+    "static/media/biscuit.jpg": "/static/media/biscuit.a2168ffa7a48c8c547f0.jpg",
+    "static/media/grocery.jpg": "/static/media/grocery.d852d72af9c0e45deca0.jpg",
+    "static/media/logo.png": "/static/media/logo.b8cc104adb63ea9c4971.png",
+    "static/media/ali2.jpg": "/static/media/ali2.7a5f578a0a273acc6aa6.jpg",
+    "static/media/a.png": "/static/media/a.57f9e29edaf6eae8defa.png",
+    "static/media/whatsap.png": "/static/media/whatsap.6eb04b9fa694ff87d749.png",
+    "static/media/akram1.jpg": "/static/media/akram1.7b4b89a03c9ffa6f23f6.jpg",
+    "static/media/cake.webp": "/static/media/cake.4272fc440aa58825c7be.webp",
+    "static/media/ajmal1.jpg": "/static/media/ajmal1.daa0fc75d2c6805d55ac.jpg",
+    "static/media/profile1.webp": "/static/media/profile1.9ff5a3cd99093d388251.webp",
+    "static/media/mithai.jpeg": "/static/media/mithai.01e4c8ab5104a2cd0dca.jpeg",
+    "static/media/cake2.webp": "/static/media/cake2.d6a8f6bb54b860b550f8.webp",
+    "static/media/slick.svg": "/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/index.html",
+    "main.228da8cf.css.map": "/static/css/main.228da8cf.css.map",
+    "main.b7296e3a.js.map": "/static/js/main.b7296e3a.js.map",
+    "453.d855a71b.chunk.js.map": "/static/js/453.d855a71b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.228da8cf.css",
+    "static/js/main.b7296e3a.js"
+  ]
+}
