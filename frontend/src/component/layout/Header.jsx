@@ -1,33 +1,24 @@
-// Header component
-
-import React from "react";
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { NavLink } from "react-router-dom";
-import { useState } from "react";
-import { Avatar } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { Avatar } from "@mui/material";
 import { logOut } from "../../store/authSlice";
-import { useNavigate } from "react-router-dom";
 import Category from "../../hook/Category";
 import { useCart } from "../../context/CartContext";
-import { useLocation } from "react-router-dom";
 
 const Header = () => {
   const [isHeaderOpen, setIsHeaderOpen] = useState(false);
   const { isLoggedIn, user, userType } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location=useLocation()
+  const location = useLocation();
   const categories = Category();
   const [cart] = useCart();
 
-  // Function to toggle the header visibility
   const toggleHeader = () => {
     setIsHeaderOpen(!isHeaderOpen);
   };
 
-  // Function to close the header when a link is clicked
   const closeHeader = () => {
     setIsHeaderOpen(false);
   };
@@ -65,12 +56,12 @@ const Header = () => {
               <img
                 src={require("../../img/logo.png")}
                 alt="Bootstrap"
-                className="h-100 w-100 obeject-fit"
+                className="h-100 w-100 object-fit"
               />
             </div>
           </Link>
           <button
-            className="navbar-toggler  bg-white  p-lg-0 "
+            className="navbar-toggler bg-white p-lg-0"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
@@ -89,7 +80,7 @@ const Header = () => {
             <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
               <li className="nav-item" onClick={closeHeader}>
                 <NavLink
-                  className="nav-link  large-text"
+                  className="nav-link large-text"
                   aria-current="page"
                   to="/"
                 >
@@ -98,7 +89,7 @@ const Header = () => {
               </li>
               <li className="nav-item" onClick={closeHeader}>
                 <NavLink
-                  className="nav-link  large-text"
+                  className="nav-link large-text"
                   aria-current="page"
                   to="/buy"
                 >
@@ -106,7 +97,13 @@ const Header = () => {
                 </NavLink>
               </li>
 
-              <li className="nav-item dropdown">
+              <li
+                className={`nav-item dropdown ${
+                  location.pathname.startsWith("/Category") ? "active" : ""
+                }`}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
                 <NavLink
                   className="nav-link dropdown-toggle large-text"
                   role="button"
@@ -118,13 +115,12 @@ const Header = () => {
                 <ul className="dropdown-menu">
                   {categories.map((c) => (
                     <li className="nav-item" onClick={closeHeader} key={c._id}>
-                      <NavLink
-                        className="dropdown-item  nav-link2 large-text text-nowrap"
-                        to={`Category/${c.slug}`}
-                         
+                      <Link
+                        className="dropdown-item nav-link2 large-text text-nowrap"
+                        to={`/Category/${c.slug}`}
                       >
                         {c.name}
-                      </NavLink>
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -145,7 +141,7 @@ const Header = () => {
                 <NavLink className="nav-link large-text" to="/cart">
                   Cart
                 </NavLink>
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                   {cart?.length}
                 </span>
               </li>
@@ -160,7 +156,6 @@ const Header = () => {
                   >
                     <div className="d-flex align-items-center justify-content-start w-auto gap-2">
                       <p className="text-white mb-0 fw-bold fs-4">
-                        {" "}
                         {user?.name}
                       </p>
                       <Avatar src={user.avatar} className="profile-image" />
@@ -173,20 +168,18 @@ const Header = () => {
                         >
                           Dashboard
                         </NavLink>
-                        <NavLink href="#">
-                          <button
-                            className="bg-transparent border-0"
-                            onClick={handleLogout}
-                          >
-                            logout
-                          </button>
-                        </NavLink>
+                        <button
+                          className="bg-transparent border-0"
+                          onClick={handleLogout}
+                        >
+                          Logout
+                        </button>
                       </div>
                     )}
                   </div>
                 </div>
               ) : (
-                <div className="d-flex flex-lg-row flex-column  align-items-start justify-content-start gap-2">
+                <div className="d-flex flex-lg-row flex-column align-items-start justify-content-start gap-2">
                   <NavLink to="/login">
                     <button
                       className="px-3 py-2 custom-btn-outline2 bg-orange-color rounded-2 large-text text-white"
@@ -205,7 +198,6 @@ const Header = () => {
                       Register
                     </button>
                   </NavLink>
-                 
                 </div>
               )}
             </div>

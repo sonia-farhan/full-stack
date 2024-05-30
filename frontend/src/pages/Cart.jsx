@@ -56,7 +56,7 @@ const Cart = () => {
             </div>
           ) : (
             <div>
-              <span className="fs-6 mb-0">Total {cart.length} Items In cart</span>
+              <span className="fs-6 mb-0">Total {cart.length} Items In your cart</span>
               <Link to="/buy" className="fw-bold ps-2 text-black" style={{textDecoration:"none"}}>Continue Shopping</Link>
             </div>
           )}

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Checkbox } from "antd";
 import { useCart } from "../context/CartContext";
 import SEO from "../component/SEO";
+import LoadSpinner from "../component/LoadSpinner";
 
 const Shops = () => {
   const [products, setProducts] = useState([]);
@@ -119,109 +120,114 @@ const Shops = () => {
         description="Welcome to Anmol, the best place to find everything you need at the best prices."
         keywords="shopping, ecommerce, buy online, Anmol, Sweets, Grocery, fast food, cake"
       />
-      <div className="custom-margin px-lg-4 d-flex flex-lg-row flex-column align-items-start justify-content-between">
-        <div className="col-lg-2 col-12">
-          <div className="ps-2 d-flex flex-column">
-            {categories.map((c) => (
-              <Checkbox
-                className=""
-                key={c._id}
-                onChange={(e) => handleFilter(e.target.checked, c._id)}
-              >
-                {c.name}
-              </Checkbox>
-            ))}
-            <div className="mt-3">
-              <button
-                className="bg-warning border-0 p-2 rounded-2 "
-                onClick={() => window.location.reload()}
-              >
-                Reset All Category
-              </button>
-            </div>
-          </div>
+      {loading ? (
+         <div className='d-flex align-items-center justify-content-center' style={{minHeight:"90vh"}}>
+         <LoadSpinner />
         </div>
-
-        <div className="col-lg-10 col-12">
-          <div className="d-flex flex-wrap align-items-center justify-content-center gap-2 ">
-            {products.map((p, index) => (
-              <div className="m-1" key={index}>
-                <div
-                  className="border-0 shadow-lg responsive-card"
-                  style={{ width: "17rem" }}
-                >
-                  <div className="" style={{ height: "200px" }}>
-                    <img
-                      src={p.productImage}
-                      className="card-img-top w-100 h-100 img-object-fit "
-                      alt={p.name}
-                      style={{
-                        borderTopLeftRadius: "20px",
-                        borderTopRightRadius: "20px",
-                      }}
-                    />
-                  </div>
-
-                  <div className="bg-white pt-3 pb-2  px-3">
-                    <div className="d-flex align-items-center justify-content-between">
-                      <h5 className="fw-bold fs-5 mb-0">{p.name}</h5>
-                      <p className="fs-6 fw-bold mb-0">
-                        RS. <span className="">{p.price}</span>{" "}
-                      </p>
-                    </div>
-                    <div className="d-flex align-itesm-center justify-content-between my-2">
-                      <h5 className="fw-bold fs-5 ">
-                        <span className="text-warning">Qty:</span> {p.stock}
-                      </h5>
-                      <button className="px-1 fw-bold  rounded-2 small-font mb-0 bg-success text-white border-0">
-                        {" "}
-                        {p.status}
-                      </button>
-                    </div>
-
-                    <p className="mb-0">{p.description.substring(0, 50)}...</p>
-
-                    <div className="d-flex align-items-center justify-content-between pt-2">
-                      <Link to={`/product/detail/${p._id}`}>
-                        <button className="small-font bg-primary border-0 text-white px-3 py-1 rounded-2 fw-bold text-uppercase">
-                          More Details
-                        </button>
-                      </Link>
-                      <button
-                        className="small-font bg-danger border-0 text-white px-3 py-1 rounded-2 fw-bold text-uppercase"
-                        onClick={() => {
-                          setCart([...cart, p]);
-                          localStorage.setItem(
-                            "cart",
-                            JSON.stringify([...cart, p])
-                          );
-                          toast.success("Item add Successfully");
-                        }}
-                      >
-                        Add to Cart
-                      </button>
-                    </div>
-                    <p></p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="text-center my-4">
-            {products && products.length < total && (
-              <button
-                className="btn btn-warning"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setPage(page + 1);
-                }}
-              >
-                {loading ? "Loadding..." : "Load More"}
-              </button>
-            )}
+      ): ( <div className="custom-margin px-lg-4 d-flex flex-lg-row flex-column align-items-start justify-content-between">
+      <div className="col-lg-2 col-12">
+        <div className="ps-2 d-flex flex-column">
+          {categories.map((c) => (
+            <Checkbox
+              className=""
+              key={c._id}
+              onChange={(e) => handleFilter(e.target.checked, c._id)}
+            >
+              {c.name}
+            </Checkbox>
+          ))}
+          <div className="mt-3">
+            <button
+              className="bg-warning border-0 p-2 rounded-2 "
+              onClick={() => window.location.reload()}
+            >
+              Reset All Category
+            </button>
           </div>
         </div>
       </div>
+
+      <div className="col-lg-10 col-12">
+        <div className="d-flex flex-wrap align-items-center justify-content-center gap-2 ">
+          {products.map((p, index) => (
+            <div className="m-1" key={index}>
+              <div
+                className="border-0 shadow-lg responsive-card rounded-4"
+                style={{ width: "17rem" }}
+              >
+                <div className="rounded-4" style={{ height: "200px" }}>
+                  <img
+                    src={p.productImage}
+                    className="card-img-top w-100 h-100 img-object-fit "
+                    alt={p.name}
+                    style={{
+                      borderTopLeftRadius: "20px",
+                      borderTopRightRadius: "20px",
+                    }}
+                  />
+                </div>
+
+                <div className="bg-white pt-3 pb-2  px-3">
+                  <div className="d-flex align-items-center justify-content-between">
+                    <h5 className="fw-bold fs-5 mb-0">{p.name}</h5>
+                    <p className="fs-6 fw-bold mb-0">
+                      RS. <span className="">{p.price}</span>{" "}
+                    </p>
+                  </div>
+                  <div className="d-flex align-itesm-center justify-content-between my-2">
+                    <h5 className="fw-bold fs-6 ">
+                      <span className="text-warning">Qty:</span> {p.stock}
+                    </h5>
+                    <button className="px-1 fw-bold  rounded-2 small-font mb-0 bg-success text-white border-0">
+                      {" "}
+                      {p.status}
+                    </button>
+                  </div>
+
+                  <p className="mb-0">{p.description.substring(0, 50)}...</p>
+
+                  <div className="d-flex align-items-center justify-content-between pt-2">
+                    <Link to={`/product/detail/${p._id}`}>
+                      <button className="small-font bg-primary border-0 text-white px-3 py-1 rounded-2 fw-bold text-uppercase">
+                        More Details
+                      </button>
+                    </Link>
+                    <button
+                      className="small-font bg-danger border-0 text-white px-3 py-1 rounded-2 fw-bold text-uppercase"
+                      onClick={() => {
+                        setCart([...cart, p]);
+                        localStorage.setItem(
+                          "cart",
+                          JSON.stringify([...cart, p])
+                        );
+                        toast.success("Item add Successfully");
+                      }}
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
+                  <p></p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="text-center my-4">
+          {products && products.length < total && (
+            <button
+              className="btn btn-warning"
+              onClick={(e) => {
+                e.preventDefault();
+                setPage(page + 1);
+              }}
+            >
+              {loading ? "Loadding..." : "Load More"}
+            </button>
+          )}
+        </div>
+      </div>
+    </div>)}
+     
     </>
   );
 };
