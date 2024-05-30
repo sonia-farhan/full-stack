@@ -7,46 +7,46 @@ import slugify from "slugify";
 
 import { Category } from "../modals/categoryModal.js";
 
-export const createProductController = AsyncModule(async (req, res) => {
-  const { name, description, price, category, stock, status } = req.body;
+// export const createProductController = AsyncModule(async (req, res) => {
+//   const { name, description, price, category, stock, status } = req.body;
 
-  if (
-    [name, description, price, category, status].some(
-      (field) => field.trim() === ""
-    )
-  ) {
-    throw new ApiError(403, "All fields are required");
-  }
+//   if (
+//     [name, description, price, category, status].some(
+//       (field) => field.trim() === ""
+//     )
+//   ) {
+//     throw new ApiError(403, "All fields are required");
+//   }
 
  
 
-  const localProductImage = req.files?.productImage[0]?.path;
-  if (!localProductImage) {
-    throw new ApiError(403, "product Image required");
-  }
-  const productImage = await CloudnaryStep(localProductImage);
-  if (!productImage.url) {
-    throw new ApiError(403, "product Images are not found on cloudnary");
-  }
+//   const localProductImage = req.files?.productImage[0]?.path;
+//   if (!localProductImage) {
+//     throw new ApiError(403, "product Image required");
+//   }
+//   const productImage = await CloudnaryStep(localProductImage);
+//   if (!productImage.url) {
+//     throw new ApiError(403, "product Images are not found on cloudnary");
+//   }
 
-  const product = await Product.create({
-    name,
-    slug: slugify(name),
-    description,
-    price,
-    category,
-    stock,
-    status,
-    productImage: productImage.url,
-  });
+//   const product = await Product.create({
+//     name,
+//     slug: slugify(name),
+//     description,
+//     price,
+//     category,
+//     stock,
+//     status,
+//     productImage: productImage.url,
+//   });
 
-  if (!product) {
-    throw new ApiError(500, "Product cannot created successfully");
-  }
-  return res
-    .status(200)
-    .json(new ApiResponse(200, product, "Product created successfully"));
-});
+//   if (!product) {
+//     throw new ApiError(500, "Product cannot created successfully");
+//   }
+//   return res
+//     .status(200)
+//     .json(new ApiResponse(200, product, "Product created successfully"));
+// });
 
 // export const updateProductController=AsyncModule(async(req,res)=>{
 //     const{name, description, price, category,stock, slug}=req.body;
@@ -77,6 +77,44 @@ export const createProductController = AsyncModule(async (req, res) => {
 //         new ApiResponse(200, product, "Product update successfully")
 //     )
 // })
+
+
+
+export const createProductController = AsyncModule(async (req, res) => {
+    const { name, description, price, category, stock, status } = req.body;
+
+    if ([name, description, price, category, status].some(field => field.trim() === "")) {
+        throw new ApiError(403, "All fields are required");
+    }
+
+    const localProductImage = req.files?.productImage[0]?.path;
+    if (!localProductImage) {
+        throw new ApiError(403, "Product image is required");
+    }
+
+    const productImage = await CloudnaryStep(localProductImage);
+    if (!productImage.url) {
+        throw new ApiError(403, "Product image upload to Cloudinary failed");
+    }
+
+    const product = await Product.create({
+        name,
+        slug: slugify(name),
+        description,
+        price,
+        category,
+        stock,
+        status,
+        productImage: productImage.url,
+    });
+
+    if (!product) {
+        throw new ApiError(500, "Product creation failed");
+    }
+
+    return res.status(200).json(new ApiResponse(200, product, "Product created successfully"));
+});
+
 
 export const updateProductController = AsyncModule(async (req, res) => {
   const { name, description, price, category, stock, status } = req.body;
