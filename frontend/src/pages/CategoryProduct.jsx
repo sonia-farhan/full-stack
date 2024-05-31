@@ -3,10 +3,11 @@ import { useState, useEffect ,useCallback} from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import {toast} from 'react-toastify'
-import { useCart } from '../context/CartContext'
+// import { useCart } from '../context/CartContext'
 import SEO from '../component/SEO'
 import { Link } from 'react-router-dom'
 import LoadSpinner from '../component/LoadSpinner'
+import CartButton from '../component/CartButton'
 
 const CategoryProduct = () => {
     const params=useParams()
@@ -14,7 +15,7 @@ const CategoryProduct = () => {
     const [products, setProducts]=useState([])
     const [loading, setLoading]=useState(false)
     const {slug}= params;
-    const [cart, setCart]=useCart()
+    // const [cart, setCart]=useCart()
   
    
     const categoryProduct = useCallback(async () => {
@@ -100,7 +101,7 @@ const CategoryProduct = () => {
                         More Details
                       </button>
                     </Link>
-                    <button
+                    {/* <button
                       className="small-font bg-danger border-0 text-white px-3 py-1 rounded-2 fw-bold text-uppercase"
                       onClick={() => {
                         setCart([...cart, p]);
@@ -112,7 +113,9 @@ const CategoryProduct = () => {
                       }}
                     >
                       Add to Cart
-                    </button>
+                    </button> */}
+
+                    <CartButton p={p} />
                   </div>
                   <p></p>
                 </div>

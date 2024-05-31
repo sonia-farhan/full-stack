@@ -60,7 +60,7 @@ const UpdateProduct = () => {
       formData.append("price", productData.price);
       formData.append("category", productData.category);
       formData.append("stock", productData.stock);
-      formData.append("status", productData.stock);
+      formData.append("status", productData.status);
 
       if (productData.productImage) {
         formData.append("productImage", productData.productImage);

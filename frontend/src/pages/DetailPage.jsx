@@ -6,6 +6,7 @@ import { useCart } from "../context/CartContext";
 import { toast } from "react-toastify";
 import SEO from "../component/SEO";
 import LoadSpinner from "../component/LoadSpinner";
+import CartButton from "../component/CartButton";
 
 const DetailPage = () => {
   const params = useParams();
@@ -88,7 +89,7 @@ const DetailPage = () => {
                   <p className="fs-6 fw-bold">
                     Avaiable Stock: {product.stock}
                   </p>
-                  <button
+                  {/* <button
                     className="bg-orange-color border-0 text-white px-4 py-2 rounded-2 fw-bold text-uppercase"
                     onClick={() => {
                       setCart([...cart, product]);
@@ -97,7 +98,8 @@ const DetailPage = () => {
                     }}
                   >
                     Add to Card
-                  </button>
+                  </button> */}
+                  <CartButton p={product} />
                   <p></p>
                 </div>
               </div>
@@ -151,7 +153,7 @@ const DetailPage = () => {
                           </p>
 
                           <div className="d-flex align-items-center justify-content-between pt-2">
-                            <button
+                            {/* <button
                               className="small-font bg-danger border-0 text-white px-3 py-1 rounded-2 fw-bold text-uppercase"
                               onClick={() => {
                                 setCart([...cart, p]);
@@ -163,7 +165,8 @@ const DetailPage = () => {
                               }}
                             >
                               Add to Cart
-                            </button>
+                            </button> */}
+                             <CartButton p={p} />
                           </div>
                           <p></p>
                         </div>

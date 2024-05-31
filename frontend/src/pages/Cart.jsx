@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useCart } from "../context/CartContext";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import SEO from "../component/SEO";
+import { FaPlus } from "react-icons/fa6";
+import { FaMinus } from "react-icons/fa";
 
 const Cart = () => {
   const [cart, setCart] = useCart();
@@ -20,11 +22,30 @@ const Cart = () => {
     }
   };
 
+const increaseQuantity=async(pid)=>{
+  console.log("increament function")
+  const updateCart=cart.map((item)=>
+  item._id === pid && item.stock > item.quantity ? {...item, quantity:item.quantity + 1} :item
+  )
+  setCart(updateCart)
+  localStorage.setItem('cart', JSON.stringify(updateCart))
+}
+const decreaseQuantity=async(pid)=>{
+  console.log("decrement function")
+  const updateCart=cart.map((item)=>
+  item._id === pid &&  item.quantity > 1 ? {...item, quantity:item.quantity - 1} :item
+  )
+  setCart(updateCart)
+  localStorage.setItem('cart', JSON.stringify(updateCart))
+}
+  
+  
+
   const totalPrice = () => {
     try {
       let total = 0;
       cart.forEach((item) => {
-        total = total + item.price;
+        total +=item.price *item.quantity;
       });
       return total.toLocaleString();
     } catch (error) {
@@ -64,8 +85,8 @@ const Cart = () => {
         <div className="container p-lg-5 p-2 d-flex  flex-lg-row flex-column align-items-start justify-content-between ">
           <div className="col-lg-6 col-12">
             {cart.map((p) => (
-              <div className="mb-2" key={p._id}>
-                <div className="p-3 d-flex  align-items-start justify-content-start border bg-white">
+              <div className="mb-2" >
+                <div  className="p-3 d-flex  align-items-start justify-content-start border bg-white">
                   <div className="col-lg-5 d-flex align-items-center justify-content-center">
                     <div style={{ width: "150px" }}>
                       <img
@@ -81,7 +102,16 @@ const Cart = () => {
                       <p className="fs-6 fw-bold mb-0">
                         RS. <span className="">{p.price}</span>{" "}
                       </p>
-                      <p className="fs-6 fw-bold mb-0">items. </p>
+                      <div className="d-flex align-items-start justify-content-start my-2">
+                    <div className="d-flex align-items-center justify-content-center gap-4 ">
+                      <button onClick={() => increaseQuantity(p._id)} className="bg-transparent border-0"><FaPlus /></button>
+                      <div className="">{p.quantity}</div>
+                      <button onClick={() => decreaseQuantity(p._id)} className="bg-transparent border-0">
+                        <FaMinus  /> 
+                      </button>
+                      </div>
+
+                    </div>
                       <button
                         className="bg-danger border-0 rounded-1 px-3 py-1 text-white fw-bold"
                         onClick={() => deleteCardItem(p._id)}

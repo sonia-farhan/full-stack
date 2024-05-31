@@ -197,7 +197,7 @@ const handleChange = (e) => {
                  <div className="d-flex flex-lg-row flex-column align-items-center justify-content-between gap-2">
                   <div className="mb-3 w-100">
                     <input
-                      type="text"
+                      type="number"
                       className="form-control form-control-lg"
                       placeholder="Enter product stock"
                       name='stock'
