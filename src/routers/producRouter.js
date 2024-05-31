@@ -19,7 +19,8 @@ router.post(
   "/create-product",
   authenticateUser,
   isAdmin,
-  upload.fields([{ name: "productImage", maxCount: 1 }]),
+  // upload.fields([{ name: "productImage", maxCount: 1 }]),
+  upload.single("productImage"),
 
   createProductController
 );

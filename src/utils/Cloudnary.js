@@ -1,8 +1,5 @@
 import { v2 as cloudinary } from 'cloudinary';
-import fs from 'fs';
-import dotenv from 'dotenv';
 
-dotenv.config();
 
 cloudinary.config({ 
   cloud_name: "dh9qqmlzr", 
@@ -10,26 +7,16 @@ cloudinary.config({
   api_secret: "FNzhE_L4gAG73F4HXub_jyEKzFY",
 });
 
-const CloudnaryStep = async (localFilePath) => {
-    try {
-        if (!localFilePath) {
-            console.log("Local file path not found:", localFilePath);
-            return null;
-        }
-
-        const response = await cloudinary.uploader.upload(localFilePath, {
-            resource_type: "auto"
+export const CloudnaryStep = (fileBuffer) => {
+    return new Promise((resolve, reject) => {
+        const stream = cloudinary.uploader.upload_stream((error, result) => {
+            if (error) {
+                console.error("Error uploading file to Cloudinary:", error.message);
+                return reject(error);
+            }
+            resolve(result);
         });
-        fs.unlinkSync(localFilePath);
-        return response;
-        
-    } catch (error) {
-        console.error("Error uploading file to Cloudinary:", error.message);
-        if (fs.existsSync(localFilePath)) {
-            fs.unlinkSync(localFilePath);
-        }
-        return null;
-    }
-};
 
-export { CloudnaryStep };
+        stream.end(fileBuffer);
+    });
+};

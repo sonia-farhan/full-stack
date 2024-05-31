@@ -83,11 +83,15 @@ import { Category } from "../modals/categoryModal.js";
 export const createProductController = AsyncModule(async (req, res) => {
     const { name, description, price, category, stock, status } = req.body;
 
-    if ([name, description, price, category, status].some(field => field.trim() === "")) {
+    if ([name, description, price, category, status].some(field => !field || field.trim() === "")) {
         throw new ApiError(403, "All fields are required");
     }
 
-    const localProductImage = req.files?.productImage[0]?.path;
+    // Log for debugging
+    console.log("Request Files:", req.files);
+    console.log("Request File:", req.file);
+
+    const localProductImage = req.file?.buffer;
     if (!localProductImage) {
         throw new ApiError(403, "Product image is required");
     }
@@ -116,6 +120,7 @@ export const createProductController = AsyncModule(async (req, res) => {
 });
 
 
+
 export const updateProductController = AsyncModule(async (req, res) => {
   const { name, description, price, category, stock, status } = req.body;
 
@@ -133,7 +138,7 @@ export const updateProductController = AsyncModule(async (req, res) => {
     req.files.productImage &&
     req.files.productImage.length > 0
   ) {
-    const localProductImage = req.files.productImage[0].path;
+    const localProductImage = req.files.productImage[0].buffer;
     productImage = await CloudnaryStep(localProductImage);
     if (!productImage || !productImage.url) {
       throw new ApiError(403, "Product images are not found on Cloudinary");
