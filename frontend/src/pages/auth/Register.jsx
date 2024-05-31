@@ -56,12 +56,12 @@ const navigate=useNavigate()
         //  console.log(userData, "user Register successfully")
       }
       else{
-        setLoadig(false)
+        
         toast.error("User cannot register ")
       }
       
     } catch (error) {
-
+      setLoadig(false)
       console.log(error, "some thing wrong while registration")
       
     }

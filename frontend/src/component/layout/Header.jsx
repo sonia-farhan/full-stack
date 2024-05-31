@@ -169,7 +169,7 @@ const Header = () => {
                           Dashboard
                         </NavLink>
                         <button
-                          className="bg-transparent border-0"
+                          className="bg-transparent border-0 ms-2"
                           onClick={handleLogout}
                         >
                           Logout

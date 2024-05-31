@@ -14,16 +14,16 @@ const ProtectedRoute = ({children}) => {
             navigate("/")
 
         }
-        else{
-            if(userType === "admin"){
-            navigate("/admin/dashboard")
-            }
-            else{
-                navigate("/user/dashboard")
-            }
-        }
+        // else{
+        //     if(userType === "admin"){
+        //     navigate("/admin/dashboard")
+        //     }
+        //     else{
+        //         navigate("/user/dashboard")
+        //     }
+        // }
 
-    },[isLoggedIn, userType, navigate])
+    },[isLoggedIn,  navigate])
   return (
     isLoggedIn ? children : <Spinner path="" />
   )

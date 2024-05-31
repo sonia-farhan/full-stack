@@ -30,7 +30,7 @@ export const UserProfile = () => {
     <p className=''><span className='fw-bold'>Address:</span>{user.address}</p>
   
   <div>
-    <Link to={`/admin/editProfile/${user._id}`}>
+    <Link to={user.role === "admin" ? `/admin/editProfile/${user._id}` : `/user/editProfile/${user._id}`}>
     <button className='bg-orange-color px-4 border-0 py-1 rounded-2 fw-bold text-white'>Edit Profile</button>
     </Link>
   </div>

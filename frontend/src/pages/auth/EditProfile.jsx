@@ -6,9 +6,10 @@ import { useParams } from 'react-router-dom'
 import { setUser } from '../../store/authSlice';
 import {  useDispatch } from 'react-redux';
 import SEO from '../../component/SEO';
+import { useSelector } from 'react-redux';
 
 const EditProfile = () => {
-
+    const {user}=useSelector(state => state.auth)
     const {id}=useParams()
     const dispatch=useDispatch();
     const [profilePreview, setProfulePreview]=useState(null)
@@ -54,7 +55,13 @@ const navigate=useNavigate()
         localStorage.setItem('auth', JSON.stringify({ ...authData, user: response?.data.data }));
         toast.success("user Updated successfully")
         //  console.log(response?.data.data, "user Update successfully")
-         navigate('/admin/dashboard')
+        if(user.role === "admin"){
+           navigate('/admin/dashboard')
+          }
+          else{
+            navigate('/user/dashboard')
+          }
+        
       }
       else{
         toast.error("User cannot Update ")
@@ -86,8 +93,8 @@ const navigate=useNavigate()
       }
 
       useEffect(()=>{
-       fetchUser();
-      },)
+      if(id) fetchUser();
+      },[id])
   return (
 <>
 <SEO

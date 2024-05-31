@@ -43,9 +43,9 @@ export const registerController = AsyncModule(async (req, res) => {
 
   const hashedPassword = await hashPassword(password);
 
-  const avatarLocalFile = req.files?.avatar[0]?.path;
+  const avatarLocalFile = req.file?.buffer;
   if (!avatarLocalFile) {
-    throw new ApiError(409, "avatar images are required");
+    throw new ApiError(409, "avatar image are required");
   }
 
   const avatar = await CloudnaryStep(avatarLocalFile);
@@ -182,8 +182,8 @@ export const updateUserController = AsyncModule(async (req, res) => {
     throw new ApiError(400, "All fields are required");
   }
   let avatarUrl = ""; 
-  if (req.files && req.files.avatar && req.files.avatar.length > 0) {
-    const localAvatarImage = req.files.avatar[0].path;
+  if (req.file && req.file.avatar && req.file.avatar.length > 0) {
+    const localAvatarImage = req.file.buffer;
     const avatar = await CloudnaryStep(localAvatarImage);
     if (!avatar || !avatar.url) {
       throw new ApiError(403, "Avatar image not found on Cloudinary");

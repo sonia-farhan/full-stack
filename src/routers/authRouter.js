@@ -6,12 +6,15 @@ import { authenticateUser, isAdmin } from '../middlewares/requiredSignIn.js';
 
 const authRouter=express.Router()
 
-authRouter.post('/register',upload.fields([
-    {
-        name:'avatar',
-        maxCount:1
-    }
-]) ,  registerController);
+authRouter.post('/register',
+// upload.fields([
+//     {
+//         name:'avatar',
+//         maxCount:1
+//     }
+// ]) , 
+upload.single("avatar"),
+ registerController);
 authRouter.post('/login', loginController);
 authRouter.get('/get-user/:id', userController);
 authRouter.put('/update-user/:id',authenticateUser,upload.fields([

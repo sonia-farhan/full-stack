@@ -87,10 +87,6 @@ export const createProductController = AsyncModule(async (req, res) => {
         throw new ApiError(403, "All fields are required");
     }
 
-    // Log for debugging
-    console.log("Request Files:", req.files);
-    console.log("Request File:", req.file);
-
     const localProductImage = req.file?.buffer;
     if (!localProductImage) {
         throw new ApiError(403, "Product image is required");
@@ -134,11 +130,11 @@ export const updateProductController = AsyncModule(async (req, res) => {
 
   let productImage = {};
   if (
-    req.files &&
-    req.files.productImage &&
-    req.files.productImage.length > 0
+    req.file &&
+    req.file.productImage &&
+    req.file.productImage.length > 0
   ) {
-    const localProductImage = req.files.productImage[0].buffer;
+    const localProductImage = req.file.buffer;
     productImage = await CloudnaryStep(localProductImage);
     if (!productImage || !productImage.url) {
       throw new ApiError(403, "Product images are not found on Cloudinary");

@@ -62,7 +62,7 @@ useEffect(() => {
             <Route path="/contact" element={<Contact />} />
           </Route>
 
-
+         
           <Route  element={<AdminProtectedRoute><Dashboard /></AdminProtectedRoute>}>
           <Route path="/admin/dashboard" element={<UserProfile />}></Route>
           <Route path="/admin/editProfile/:id" element={<EditProfile />}></Route>
@@ -74,7 +74,7 @@ useEffect(() => {
             <Route path="/admin/updateProduct/:id" element={<UpdateProduct />}></Route>
           </Route>
 
-
+        
           <Route element={<ProtectedRoute><DashboardUser /></ProtectedRoute>}>
             <Route path="/user/dashboard" element={<UserProfile />}></Route>
             <Route path="/user/editProfile/:id" element={<EditProfile />}></Route>

@@ -11,7 +11,38 @@ export const CartProvider = ({ children }) => {
             const cartItems=JSON.parse(existingitems)
             setCart(cartItems)
         }
-    },[])
+
+       // Check for expired cart items
+    const checkCartExpiration = () => {
+        const cartTimestamp = JSON.parse(localStorage.getItem('cartTimestamp'));
+        if (cartTimestamp) {
+          const now = Date.now();
+         const eightHours = 8 * 60 * 60 * 1000;
+      
+          if (now - cartTimestamp > eightHours) {
+            localStorage.removeItem('cart');
+            localStorage.removeItem('cartTimestamp');
+            setCart([]);
+            console.log('Cart expired and cleared.');
+          }
+        }
+      };
+  
+      checkCartExpiration();
+
+      const interval = setInterval(() => {
+        checkCartExpiration();
+      }, 60000); 
+  
+      return () => clearInterval(interval); 
+    }, []);
+  
+
+
+    
+
+
+    
 
     return (
         <CartContext.Provider value={[cart, setCart]}>

@@ -200,6 +200,7 @@ const Shops = () => {
                           "cart",
                           JSON.stringify([...cart, p])
                         );
+                        localStorage.setItem('cartTimestamp', JSON.stringify(Date.now()));
                         toast.success("Item add Successfully");
                       }}
                     >

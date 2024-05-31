@@ -28,12 +28,7 @@ router.put(
   "/update-product/:id",
   authenticateUser,
   isAdmin,
-  upload.fields([
-    {
-      name: "productImage",
-      maxCount: 1,
-    },
-  ]),
+  upload.single("productImage"),
   updateProductController
 );
 router.get("/all-product", getAllProductController);

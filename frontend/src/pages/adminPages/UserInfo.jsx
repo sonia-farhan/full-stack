@@ -58,6 +58,7 @@ const UserInfo = () => {
       <th className="bg-orange-color text-white">Name</th>
       <th className="bg-orange-color text-white">Email</th>
       <th className="bg-orange-color text-white">Phone</th>
+      <th className="bg-orange-color text-white">Date & Time</th>
       <th className="bg-orange-color text-white" style={{borderTopRightRadius:"20px"}}>Address</th>
     </tr>
   </thead>
@@ -79,6 +80,7 @@ const UserInfo = () => {
      <td>{user.name}</td>
      <td>{user.email}</td>
      <td>{user.phone}</td>
+     <td>{new Date(user.createdAt).toLocaleString()}</td>
      <td>{user.address}</td>
    </tr>
          

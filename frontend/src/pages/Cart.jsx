@@ -64,7 +64,7 @@ const Cart = () => {
         <div className="container p-lg-5 p-2 d-flex  flex-lg-row flex-column align-items-start justify-content-between ">
           <div className="col-lg-6 col-12">
             {cart.map((p) => (
-              <div className="mb-2">
+              <div className="mb-2" key={p._id}>
                 <div className="p-3 d-flex  align-items-start justify-content-start border bg-white">
                   <div className="col-lg-5 d-flex align-items-center justify-content-center">
                     <div style={{ width: "150px" }}>

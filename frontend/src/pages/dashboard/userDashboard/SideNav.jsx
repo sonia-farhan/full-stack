@@ -31,9 +31,9 @@ const listItemData = [
   
  
   // {
-  //   label: "Products",
-  //   link: "/user/product",
-  //   icon: <FaGraduationCap style={{fontSize:"20px"}}/>
+  //   label: "Update Profile",
+  //   link: "/user/editProfile/:id",
+  //   icon: <FaUser style={{fontSize:"20px"}}/>
   // },
   
   {
