@@ -26,7 +26,7 @@ const Home = () => {
               <h1 className="custom-font text-white">Healthy Made Delicious Food</h1>
               <div className="mt-4">
                 <button className="bg-orange-color py-3 px-5 fs-4 text-uppercase border-black cutom-btn-2">
-                  Order Now || buy Now
+                  Order Now 
                 </button>
               </div>
             </div>
