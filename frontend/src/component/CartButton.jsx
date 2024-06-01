@@ -1,6 +1,5 @@
 import React from 'react'
 import { useCart } from '../context/CartContext';
-import { useState } from 'react';
 import {toast} from 'react-toastify'
 
 const CartButton = ({p}) => {

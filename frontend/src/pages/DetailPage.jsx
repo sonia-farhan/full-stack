@@ -2,8 +2,6 @@ import axios from "axios";
 import React, { useState, useCallback } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useCart } from "../context/CartContext";
-import { toast } from "react-toastify";
 import SEO from "../component/SEO";
 import LoadSpinner from "../component/LoadSpinner";
 import CartButton from "../component/CartButton";
@@ -12,7 +10,6 @@ const DetailPage = () => {
   const params = useParams();
   const { id } = params;
   const [product, setProduct] = useState({});
-  const [cart, setCart] = useCart();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
 
